@@ -1,0 +1,6 @@
+package com.example.data.remote.dto
+
+data class IdDto(
+    val name: String?,
+    val value: String?
+)
