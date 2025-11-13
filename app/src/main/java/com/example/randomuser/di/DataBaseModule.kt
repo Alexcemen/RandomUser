@@ -1,9 +1,9 @@
 package com.example.randomuser.di
 
 import android.content.Context
-import androidx.room.Room
 import com.example.data.local.dao.UserDao
 import com.example.data.local.db.AppDatabase
+import com.example.data.local.db.createDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,17 +19,8 @@ object DataBaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
-    ): AppDatabase {
-        return Room.databaseBuilder(
-            context,
-            AppDatabase::class.java,
-            "randomuser-db"
-        ).fallbackToDestructiveMigration(true)
-            .build()
-    }
+    ) =  createDatabase(context)
 
     @Provides
-    fun provideUserDao(
-        db: AppDatabase
-    ): UserDao = db.userDao()
+    fun provideUserDao(appDatabase: AppDatabase): UserDao = appDatabase.userDao()
 }
