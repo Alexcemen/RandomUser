@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.data"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -23,18 +23,18 @@ dependencies {
     implementation(project(":domain"))
 
     // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.gson)
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
     // OkHttp (логирование запросов)
-    implementation(libs.okhttp.logging)
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.14")
 
     // Room
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
-    kapt(libs.room.compiler)
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
 
     // Hilt (для DI в data-модуле)
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 }
