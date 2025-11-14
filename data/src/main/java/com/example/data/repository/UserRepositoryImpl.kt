@@ -4,7 +4,6 @@ import com.example.data.local.dao.UserDao
 import com.example.data.mapper.DomainToEntityMapper
 import com.example.data.mapper.DtoToDomainMapper
 import com.example.data.mapper.EntityToDomainMapper
-import com.example.data.mapper.Mapper
 import com.example.data.remote.api.RandomUserApi
 import com.example.domain.repository.UserRepository
 import com.example.domain.model.User

@@ -1,10 +1,12 @@
 package com.example.data.di
 
+import com.example.data.remote.api.RandomUserApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
@@ -12,10 +14,16 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideOkHttpClient(): OkHttpClient {
-//        val logging = HttpL
-//    }
+    @Provides
+    @Singleton
+    fun provideRetrofit(): Retrofit =
+        Retrofit.Builder()
+            .baseUrl("https://randomuser.me/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
 
+    @Provides
+    @Singleton
+    fun provideRandomUserApi(retrofit: Retrofit): RandomUserApi =
+        retrofit.create(RandomUserApi::class.java)
 }
