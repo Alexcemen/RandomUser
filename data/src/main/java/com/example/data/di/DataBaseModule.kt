@@ -1,4 +1,4 @@
-package com.example.randomuser.di
+package com.example.data.di
 
 import android.content.Context
 import com.example.data.local.dao.UserDao
