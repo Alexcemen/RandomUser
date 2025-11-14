@@ -24,4 +24,4 @@ fun createDatabase(context: Context) = Room.databaseBuilder(
     context,
     AppDatabase::class.java,
     "randomuser-db"
-).fallbackToDestructiveMigration(true).build()
+).fallbackToDestructiveMigration().build()

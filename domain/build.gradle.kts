@@ -1,17 +1,11 @@
 plugins {
-    kotlin("jvm")
+    id("org.jetbrains.kotlin.jvm")
 }
 
 kotlin {
-    jvmToolchain(17)
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    jvmToolchain(21)
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
 }
