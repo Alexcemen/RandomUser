@@ -1,9 +1,12 @@
 package com.example.randomuser.di
 
 import com.example.data.local.dao.UserDao
-import com.example.data.mapper.UserMapper
+import com.example.data.mapper.DomainToEntityMapper
+import com.example.data.mapper.DtoToDomainMapper
+import com.example.data.mapper.EntityToDomainMapper
+import com.example.data.remote.api.RandomUserApi
 import com.example.data.repository.UserRepositoryImpl
-import com.example.domain.UserRepository
+import com.example.domain.repository.UserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,11 +21,17 @@ class RepositoryModule {
     @Singleton
     fun provideUserRepository(
         userDao: UserDao,
-        userMapper: UserMapper
+        dtoToDomain: DtoToDomainMapper,
+        entityToDomain: EntityToDomainMapper,
+        domainToEntity: DomainToEntityMapper,
+        api: RandomUserApi
     ): UserRepository {
         return UserRepositoryImpl(
             dao = userDao,
-            mapper = userMapper
+            dtoToDomain = dtoToDomain,
+            entityToDomain = entityToDomain,
+            domainToEntity = domainToEntity,
+            api = api
         )
     }
 }
