@@ -1,9 +1,9 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.compose")
-    id("com.google.dagger.hilt.android")
-    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.dagger.hilt)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -32,7 +32,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.11"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 }
 
@@ -41,33 +41,30 @@ dependencies {
     implementation(project(":data"))
 
     // Compose BOM
-    val composeBom = platform("androidx.compose:compose-bom:2024.10.00")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
 
-    // Compose core
-    implementation("androidx.activity:activity-compose")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose")
-    implementation("androidx.compose.material3:material3")
+    // Compose base
+    implementation(libs.activity.compose)
+    implementation(libs.lifecycle.runtime.compose)
+    implementation(libs.material3)
 
-
-    // Navigation 3 (если используешь новую модель)
-    implementation("androidx.navigation3:navigation3-ui:1.0.0-beta01")
-    implementation("androidx.navigation3:navigation3-runtime:1.0.0-beta01")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-navigation3:1.0.0-alpha04")
+    // Navigation 3
+    implementation(libs.navigation3.ui)
+    implementation(libs.navigation3.runtime)
+    implementation(libs.lifecycle.viewmodel.navigation3)
 
     // Room
-    implementation("androidx.room:room-runtime:2.6.1")
-
+    implementation(libs.room.runtime)
 
     // Lifecycle + ViewModel compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
+    implementation(libs.lifecycle.viewmodel.compose)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.51")
-    kapt("com.google.dagger:hilt-android-compiler:2.51")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.navigation.compose)
 
-    // Other
-    implementation("androidx.core:core-ktx:1.13.1")
+    // Core KTX
+    implementation(libs.core.ktx)
 }
