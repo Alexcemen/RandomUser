@@ -8,13 +8,13 @@ data class SplashScreen(override val type: String = SplashScreen::class.simpleNa
     AppNavKey()
 
 @Serializable
-data class CreateUserKey(override val type: String = CreateUserKey::class.simpleName.toString()) :
+data class CreateUser(override val type: String = CreateUser::class.simpleName.toString()) :
     AppNavKey()
 
 @Serializable
-data class UserListKey(override val type: String = UserListKey::class.simpleName.toString()) :
+data class UserList(override val type: String = UserList::class.simpleName.toString()) :
     AppNavKey()
 
 @Serializable
-data class UserDetailsKey(override val type: String = UserDetailsKey::class.simpleName.toString()) :
+data class UserDetails(override val type: String = UserDetails::class.simpleName.toString()) :
     AppNavKey()

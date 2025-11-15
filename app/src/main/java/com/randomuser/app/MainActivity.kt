@@ -13,10 +13,10 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.randomuser.app.ui.mvi.AppNavKey
-import com.randomuser.app.ui.navigation.CreateUserKey
+import com.randomuser.app.ui.navigation.CreateUser
 import com.randomuser.app.ui.navigation.SplashScreen
-import com.randomuser.app.ui.navigation.UserDetailsKey
-import com.randomuser.app.ui.navigation.UserListKey
+import com.randomuser.app.ui.navigation.UserDetails
+import com.randomuser.app.ui.navigation.UserList
 import com.randomuser.app.ui.screen.create_user.CreateUserScreenContent
 import dagger.hilt.android.AndroidEntryPoint
 import ru.project.tutor.common_ui.composable.theme.AppTheme
@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AppTheme {
-                val backStack = rememberNavBackStack(CreateUserKey()) as NavBackStack<AppNavKey>
+                val backStack = rememberNavBackStack(CreateUser()) as NavBackStack<AppNavKey>
 
                 NavDisplay(
                     backStack = backStack,
@@ -48,19 +48,19 @@ class MainActivity : ComponentActivity() {
                             }
                         }
 
-                        entry<CreateUserKey> {
+                        entry<CreateUser> {
                             CompositionLocalProvider(RootNavigation provides backStack) {
                                 CreateUserScreenContent()
                             }
                         }
 
-                        entry<UserListKey> {
+                        entry<UserList> {
                             CompositionLocalProvider(RootNavigation provides backStack) {
 //                                UserListScreen()
                             }
                         }
 
-                        entry<UserDetailsKey> {
+                        entry<UserDetails> {
                             CompositionLocalProvider(RootNavigation provides backStack) {
 //                                UserDetailsScreen()
                             }

@@ -1,4 +1,4 @@
-package com.randomuser.app.ui.screen.create_user
+package com.randomuser.app.ui.models.enums
 
 enum class Nationality(val title: String) {
     AU("Australia"),

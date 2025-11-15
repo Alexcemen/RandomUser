@@ -45,6 +45,9 @@ dependencies {
     implementation(libs.kotlin.serialization.json)
     implementation(libs.gson)
 
+    // Coil
+    implementation(libs.coil.compose)
+
     // Compose BOM
     implementation(platform(libs.compose.bom))
     implementation(libs.ui.tooling.preview)

@@ -21,16 +21,20 @@ class CreateUserViewModel @Inject constructor(
         intent: CreateUserStore.Event,
     ): Flow<CreateUserStore.Effect> = when (intent) {
 
-        CreateUserStore.Event.Generate -> flow {
+        CreateUserStore.Event.Close -> flow {
+            sendSideEffect(CreateUserStore.SideEffect.Close)
+        }
+
+        is CreateUserStore.Event.Generate -> flow {
 
         }
 
         is CreateUserStore.Event.SelectedGender -> flow {
-
+            emit(CreateUserStore.Effect.SelectedGender(intent.gender))
         }
 
         is CreateUserStore.Event.SelectedNationality -> flow {
-
+            emit(CreateUserStore.Effect.SelectedNationality(intent.nationality))
         }
     }
 
@@ -38,6 +42,12 @@ class CreateUserViewModel @Inject constructor(
         currentState: CreateUserStore.State,
         effect: CreateUserStore.Effect,
     ): CreateUserStore.State {
-        return CreateUserStore.State()
+        return when(effect) {
+
+            is CreateUserStore.Effect.SelectedGender -> currentState.copy(gender = effect.gender)
+
+            is CreateUserStore.Effect.SelectedNationality -> currentState.copy(nationality = effect.nationality)
+
+        }
     }
 }

@@ -9,8 +9,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.randomuser.app.ui.screen.create_user.CreateUserStore
-import com.randomuser.app.ui.screen.create_user.Gender
-import com.randomuser.app.ui.screen.create_user.Nationality
+import com.randomuser.app.ui.models.enums.Gender
+import com.randomuser.app.ui.models.enums.Nationality
 import com.randomuser.app.utils.composable_elements.BottomSpacerSystem
 import com.randomuser.app.utils.composable_elements.ContainerContent
 import com.randomuser.app.utils.composable_elements.MainToolbar
@@ -66,14 +66,18 @@ fun CreateUserContent(
             MainToolbar(
                 text = stringResource(R.string.title_create_user_content),
                 isVisibleBack = true,
-                onClickBack = {}
+                onClickBack = {
+                    onEvent(
+                        CreateUserStore.Event.Close
+                    )
+                }
             )
         }
     ) {
         Column(Modifier.weight(1f)) {
             SpacerHeight(42.dp)
             Text(
-                text = "Select Gender :",
+                text = stringResource(R.string.select_gender),
                 style = AppTheme.textStyle.titleTwo,
                 color = AppTheme.colors.text.primary,
             )
@@ -90,7 +94,7 @@ fun CreateUserContent(
             )
             SpacerHeight(32.dp)
             Text(
-                text = "Select Nationality :",
+                text = stringResource(R.string.select_nationality),
                 style = AppTheme.textStyle.titleTwo,
                 color = AppTheme.colors.text.primary,
             )
@@ -107,7 +111,7 @@ fun CreateUserContent(
             )
         }
         SpacerHeight(16.dp)
-        PrimaryButton(text = "Generate") {
+        PrimaryButton(text = stringResource(R.string.generate)) {
             onEvent(
                 CreateUserStore.Event.Generate
             )
