@@ -28,20 +28,21 @@ class CreateUserViewModel @Inject constructor(
         }
 
         is CreateUserStore.Event.Generate -> flow {
-            Log.d("CreateUserVM", "Нажата кнопка генерации. gender=${currentState.gender}, nat=${currentState.nationality}")
             val result = userRepository.fetchRandomUser(
                 gender = currentState.gender.name,
                 nat = currentState.nationality.name
             )
-            Log.d("CreateUserVM", "Результат запроса: $result")
             result.onSuccess { user ->
-                Log.d("CreateUserVM", "Пользователь успешно получен: $user")
                 userRepository.insertUser(user)
-                Log.d("CreateUserVM", "Пользователь добавлен в базу данных")
                 sendSideEffect(CreateUserStore.SideEffect.Close)
+                sendSideEffect(CreateUserStore.SideEffect.ShowToast(
+                    msg = "Новый пользователь ${user.name.title} ${user.name.first} ${user.name.last} успешно добавлен в список"
+                ))
             }
             result.onFailure { error ->
-                Log.e("CreateUserVM", "Ошибка при получении пользователя", error)
+                sendSideEffect(CreateUserStore.SideEffect.ShowToast(
+                    msg = "Не удалось добавить нового пользователя"
+                ))
             }
         }
 

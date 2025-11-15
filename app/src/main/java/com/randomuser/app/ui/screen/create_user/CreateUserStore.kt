@@ -21,6 +21,7 @@ object CreateUserStore {
 
     sealed interface SideEffect : MviSideEffect {
         data object Close : SideEffect
+        data class ShowToast(val msg: String) : SideEffect
     }
 
     sealed interface Event : MviEvent {
