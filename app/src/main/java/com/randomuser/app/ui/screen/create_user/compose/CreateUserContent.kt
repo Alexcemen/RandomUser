@@ -106,6 +106,7 @@ fun CreateUserContent(
                 }
             )
         }
+        SpacerHeight(16.dp)
         PrimaryButton(text = "Generate") {
             onEvent(
                 CreateUserStore.Event.Generate

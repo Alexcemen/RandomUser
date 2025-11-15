@@ -9,6 +9,8 @@ object LightText : AppThemeColors.Text {
         get() = Color(0xFF103264)
     override val mask: Color
         get() = Color(0xFF46414B)
+    override val primaryUniform: Color
+        get() = Color(0xFF1C1C1C)
 
     override val placeholder: Color
         get() = Color(0xFF808080)
@@ -16,8 +18,7 @@ object LightText : AppThemeColors.Text {
         get() = Color(0xFFD45858)
     override val blue: Color
         get() = Color(0xFF588BD4)
-    override val primaryUniform: Color
-        get() = Color(0xFF1C1C1C)
+
     override val reverse: Color
         get() = Color(0xFFFBFBFB)
     override val blueTwo: Color
@@ -34,6 +35,10 @@ object LightBackground : AppThemeColors.Background {
         get() = Color(0xFF103264)
     override val mask: Color
         get() = Color(0xFF46414B)
+    override val secondary: Color
+        get() = Color(0xFFFBFBFB)
+    override val primaryUniform: Color
+        get() = Color(0xFF1C1C1C)
 
 
     override val blue: Color
@@ -42,8 +47,7 @@ object LightBackground : AppThemeColors.Background {
         get() = Color(0xFFD45858)
     override val green: Color
         get() = Color(0xFF48CA72)
-    override val secondary: Color
-        get() = Color(0xFF6C6C6C)
+
     override val secondaryTwo: Color
         get() = Color(0xFFF9F9F9)
     override val basicUniform: Color

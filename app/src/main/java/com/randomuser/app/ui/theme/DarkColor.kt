@@ -9,6 +9,8 @@ object DarkText : AppThemeColors.Text {
         get() = Color(0xFFFFFFFF)
     override val mask: Color
         get() = Color(0xFFCCCCCC)
+    override val primaryUniform: Color
+        get() = Color(0xFF1C1C1C)
 
     override val placeholder: Color
         get() = Color(0xFFA6A6A6)
@@ -16,8 +18,7 @@ object DarkText : AppThemeColors.Text {
         get() = Color(0xFFE67474)
     override val blue: Color
         get() = Color(0xFF588BD4)
-    override val primaryUniform: Color
-        get() = Color(0xFF1C1C1C)
+
     override val reverse: Color
         get() = Color(0xFF000000)
     override val blueTwo: Color
@@ -34,6 +35,10 @@ object DarkBackground : AppThemeColors.Background {
         get() = Color(0xFFF6F6F6)
     override val mask: Color
         get() = Color(0xFF8F8F8F)
+    override val secondary: Color
+        get() = Color(0xFFE3E3E3)
+    override val primaryUniform: Color
+        get() = Color(0xFF1C1C1C)
 
 
     override val blue: Color
@@ -42,8 +47,6 @@ object DarkBackground : AppThemeColors.Background {
         get() = Color(0xFF762B2B)
     override val green: Color
         get() = Color(0xFF19582D)
-    override val secondary: Color
-        get() = Color(0xFF9C9C9C)
     override val secondaryTwo: Color
         get() = Color(0xFF3F3F3F)
     override val basicUniform: Color

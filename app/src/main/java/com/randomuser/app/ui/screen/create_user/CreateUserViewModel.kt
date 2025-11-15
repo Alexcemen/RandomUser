@@ -20,6 +20,7 @@ class CreateUserViewModel @Inject constructor(
         currentState: CreateUserStore.State,
         intent: CreateUserStore.Event,
     ): Flow<CreateUserStore.Effect> = when (intent) {
+
         CreateUserStore.Event.Generate -> flow {
 
         }

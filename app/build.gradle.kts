@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.kapt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -39,6 +40,10 @@ android {
 dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
+
+    implementation(libs.kotlin.serialization.core)
+    implementation(libs.kotlin.serialization.json)
+    implementation(libs.gson)
 
     // Compose BOM
     implementation(platform(libs.compose.bom))

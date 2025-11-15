@@ -6,12 +6,13 @@ interface AppThemeColors {
     interface Text {
         val primary: Color
         val mask: Color
+        val primaryUniform: Color
+
 
 
         val placeholder: Color
         val red: Color
         val blue: Color
-        val primaryUniform: Color
         val reverse: Color
         val blueTwo: Color
         val whiteUniform: Color
@@ -20,12 +21,15 @@ interface AppThemeColors {
     interface Background {
         val basic: Color
         val primary: Color
+        val secondary: Color
+        val primaryUniform: Color
+
+
 
 
         val blue: Color
         val red: Color
         val green: Color
-        val secondary: Color
         val secondaryTwo: Color
         val basicUniform: Color
         val mask: Color

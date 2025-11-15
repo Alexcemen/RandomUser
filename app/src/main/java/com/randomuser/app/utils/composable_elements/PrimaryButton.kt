@@ -32,7 +32,7 @@ fun PrimaryButton(
 ) {
     TextButton(
         onClick = onClick,
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.buttonColors(
             contentColor = AppTheme.colors.text.primary,
             containerColor = contentColor,
