@@ -7,10 +7,10 @@ interface AppThemeColors {
         val primary: Color
         val mask: Color
         val primaryUniform: Color
-
-
-
         val placeholder: Color
+
+
+
         val red: Color
         val blue: Color
         val reverse: Color

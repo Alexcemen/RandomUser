@@ -11,9 +11,9 @@ object DarkText : AppThemeColors.Text {
         get() = Color(0xFFCCCCCC)
     override val primaryUniform: Color
         get() = Color(0xFF1C1C1C)
-
     override val placeholder: Color
         get() = Color(0xFFA6A6A6)
+
     override val red: Color
         get() = Color(0xFFE67474)
     override val blue: Color

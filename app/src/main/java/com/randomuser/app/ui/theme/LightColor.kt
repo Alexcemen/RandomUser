@@ -11,9 +11,9 @@ object LightText : AppThemeColors.Text {
         get() = Color(0xFF46414B)
     override val primaryUniform: Color
         get() = Color(0xFF1C1C1C)
-
     override val placeholder: Color
-        get() = Color(0xFF808080)
+        get() = Color(0xFF9C9C9C)
+
     override val red: Color
         get() = Color(0xFFD45858)
     override val blue: Color

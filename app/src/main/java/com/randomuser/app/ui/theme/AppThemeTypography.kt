@@ -30,6 +30,13 @@ class AppThemeTypography {
         lineHeight = 28.sp
     )
 
+    val titleThree1: TextStyle = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Medium,
+        fontSize = 20.sp,
+        lineHeight = 26.sp
+    )
+
     val defaultLight: TextStyle = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Light,
@@ -46,7 +53,7 @@ class AppThemeTypography {
 
     val headline: TextStyle = TextStyle(
         fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
+        fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp
     )
