@@ -17,7 +17,7 @@ class DtoToDomainMapper : Mapper<UserDto, User> {
 
     override fun map(input: UserDto): User {
         return User(
-            id = 0,
+            localId = 0,
             gender = input.gender ?: "",
             name = input.name?.let {
                 Name(

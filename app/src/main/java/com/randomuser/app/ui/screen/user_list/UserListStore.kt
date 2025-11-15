@@ -23,7 +23,7 @@ object UserListStore {
     }
 
     sealed interface Event : MviEvent {
-        data class ShowBottomSheet(val userId: UserId) : Event
+        data class ShowBottomSheet(val userId: Int) : Event
         data object AddUser : Event
     }
 

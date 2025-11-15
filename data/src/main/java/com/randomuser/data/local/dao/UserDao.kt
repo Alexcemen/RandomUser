@@ -16,7 +16,7 @@ interface UserDao {
     @Query("SELECT * FROM users")
     fun getAllUsers(): Flow<List<UserEntity>>
 
-    @Query("SELECT * FROM users WHERE id = :id")
+    @Query("SELECT * FROM users WHERE localId = :id")
     suspend fun getUserById(id: Int): UserEntity?
 
     @Query("DELETE FROM users")

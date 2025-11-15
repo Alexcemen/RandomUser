@@ -11,7 +11,7 @@ class UserListReduce @Inject constructor() :
         return UserListStore.UiState(
             users = state.users.map { user ->
                 UserUi(
-                    userId = user.userId,
+                    userId = user.localId,
                     firstName = user.name.first,
                     lastName = user.name.last,
                     phone = user.phone,

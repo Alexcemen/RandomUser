@@ -1,7 +1,7 @@
 package com.randomuser.domain.model
 
 data class User(
-    val id: Int,
+    val localId: Int,
     val gender: String?,
     val name: Name,
     val location: Location,

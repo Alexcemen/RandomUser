@@ -39,7 +39,7 @@ private fun UserListContentPreview() {
         state = UserListStore.UiState(
             listOf(
                 UserUi(
-                    userId = UserId("", ""),
+                    userId = 1,
                     firstName = "Gabrielle",
                     lastName = "Gautheir",
                     phone = "Y26 B17-2963",
@@ -47,7 +47,7 @@ private fun UserListContentPreview() {
                     mediumPicture = ""
                 ),
                 UserUi(
-                    userId = UserId("", ""),
+                    userId = 2,
                     firstName = "Troy",
                     lastName = "Ramirez",
                     phone = "(464) 445-5537",
@@ -55,7 +55,7 @@ private fun UserListContentPreview() {
                     mediumPicture = ""
                 ),
                 UserUi(
-                    userId = UserId("", ""),
+                    userId = 3,
                     firstName = "Ritthy",
                     lastName = "Lopez",
                     phone = "(294) 785-6098",

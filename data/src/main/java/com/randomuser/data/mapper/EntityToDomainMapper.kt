@@ -17,7 +17,7 @@ class EntityToDomainMapper : Mapper<UserEntity, User> {
 
     override fun map(input: UserEntity): User {
         return User(
-            id = input.id,
+            localId = input.localId,
             gender = input.gender ?: "",
             name = input.name?.let { name ->
                 Name(
@@ -122,7 +122,7 @@ class EntityToDomainMapper : Mapper<UserEntity, User> {
             ),
             phone = input.phone ?: "",
             cell = input.cell ?: "",
-            userId = input.userId?.let { id ->
+            userId = input.remotedId?.let { id ->
                 UserId(
                     name = id.name ?: "",
                     value = id.value ?: ""

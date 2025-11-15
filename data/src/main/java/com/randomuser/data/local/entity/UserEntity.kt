@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "users")
 data class UserEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    val localId: Int = 0,
 
     val gender: String?,
 
@@ -32,7 +32,7 @@ data class UserEntity(
     val cell: String?,
 
     @Embedded(prefix = "id_")
-    val userId: IdEntity?,
+    val remotedId: IdEntity?,
 
     @Embedded(prefix = "picture_")
     val picture: PictureEntity?,

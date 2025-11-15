@@ -17,7 +17,7 @@ class DtoToEntityMapper : Mapper<UserDto, UserEntity> {
 
     override fun map(input: UserDto): UserEntity {
         return UserEntity(
-            id = 0,
+            localId = 0,
             gender = input.gender,
             name = input.name?.let {
                 NameEntity(
@@ -78,7 +78,7 @@ class DtoToEntityMapper : Mapper<UserDto, UserEntity> {
             },
             phone = input.phone,
             cell = input.cell,
-            userId = input.id?.let {
+            remotedId = input.id?.let {
                 IdEntity(
                     name = it.name,
                     value = it.value
