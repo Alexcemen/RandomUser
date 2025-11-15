@@ -4,8 +4,12 @@ import UserCard
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -70,9 +74,7 @@ fun UserListContent(
     onEvent: (UserListStore.Event) -> Unit,
 ) {
     ContainerContent() {
-        Column(
-            horizontalAlignment = Alignment.End
-        ) {
+        Column() {
             LazyColumn(modifier = Modifier.weight(1f)) {
                 items(state.users) {
                     SpacerHeight(8.dp)
@@ -83,13 +85,20 @@ fun UserListContent(
                 }
             }
             SpacerHeight(16.dp)
-            AddUserBottom(
-                onClick = {
-                    onEvent(
-                        UserListStore.Event.AddUser
-                    )
-                }
-            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(end = 16.dp, bottom = 16.dp),
+                horizontalArrangement = Arrangement.End
+            ) {
+                AddUserBottom(
+                    onClick = {
+                        onEvent(
+                            UserListStore.Event.AddUser
+                        )
+                    }
+                )
+            }
             BottomSpacerSystem()
             SpacerHeight(16.dp)
         }
@@ -99,7 +108,7 @@ fun UserListContent(
 @Composable
 fun AddUserBottom(
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier
