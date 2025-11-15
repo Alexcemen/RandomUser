@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RandomUser</string>
+
+    <string name="title_create_user_content">Generate user</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
 </resources>
+

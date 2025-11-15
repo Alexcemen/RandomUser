@@ -42,12 +42,16 @@ dependencies {
 
     // Compose BOM
     implementation(platform(libs.compose.bom))
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.foundation)
+    implementation(libs.ui)
+    implementation(libs.ui.graphics)
+    implementation(libs.material3)
     androidTestImplementation(platform(libs.compose.bom))
 
     // Compose base
     implementation(libs.activity.compose)
     implementation(libs.lifecycle.runtime.compose)
-    implementation(libs.material3)
 
     // Navigation 3
     implementation(libs.navigation3.ui)
@@ -62,6 +66,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
+    debugImplementation(libs.ui.tooling)
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
 

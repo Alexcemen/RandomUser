@@ -6,7 +6,6 @@ coroutine = "1.10.1"
 composeBom = "2025.06.00"
 activityCompose = "1.10.1"
 lifecycleRuntimeKtx = "2.9.1"
-material = "1.13.0"
 navigation = "1.0.0-beta01"
 navigation-lifecycle = "1.0.0-alpha04"
 room = "2.7.1"
@@ -14,6 +13,9 @@ coreKtx = "1.16.0"
 hilt = "2.56.2"
 hilt-navigation = "1.2.0"
 retrofit = "2.11.0"
+uiToolingPreview = "1.9.4"
+uiTooling = "1.9.4"
+material3 = "1.4.0"
 
 
 [libraries]
@@ -21,8 +23,11 @@ retrofit = "2.11.0"
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleRuntimeKtx" }
-material3 = { module = "androidx.compose.material3:material3", version.ref = "material" }
 lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtx" }
+foundation = { module = "androidx.compose.foundation:foundation" }
+ui = { group = "androidx.compose.ui", name = "ui" }
+ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+
 
 #NAVIGATION
 navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "navigation" }
@@ -48,6 +53,9 @@ retrofit-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref 
 
 #COROUTINES
 coroutine = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutine" }
+ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "uiToolingPreview" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
+material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 
 
 [plugins]

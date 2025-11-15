@@ -17,8 +17,8 @@ import com.example.randomuser.ui.navigation.CreateUserKey
 import com.example.randomuser.ui.navigation.SplashScreen
 import com.example.randomuser.ui.navigation.UserDetailsKey
 import com.example.randomuser.ui.navigation.UserListKey
-import com.example.randomuser.ui.theme.RandomUserTheme
 import dagger.hilt.android.AndroidEntryPoint
+import ru.project.tutor.common_ui.composable.theme.AppTheme
 
 val RootNavigation = compositionLocalOf<NavBackStack<AppNavKey>?> { null }
 
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            RandomUserTheme {
+            AppTheme {
                 val backStack = rememberNavBackStack(SplashScreen()) as NavBackStack<AppNavKey>
 
                 NavDisplay(
