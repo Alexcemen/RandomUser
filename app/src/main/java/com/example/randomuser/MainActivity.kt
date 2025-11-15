@@ -18,10 +18,11 @@ import com.example.randomuser.ui.navigation.SplashScreen
 import com.example.randomuser.ui.navigation.UserDetailsKey
 import com.example.randomuser.ui.navigation.UserListKey
 import com.example.randomuser.ui.theme.RandomUserTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 val RootNavigation = compositionLocalOf<NavBackStack<AppNavKey>?> { null }
 
-//@AndroidEntryPoint
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
