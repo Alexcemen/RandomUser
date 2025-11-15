@@ -75,15 +75,6 @@ fun UserCard(
                 contentScale = ContentScale.Crop
             )
 
-//            Image(
-//                painter = painterResource(id = R.mipmap.ic_user_3),
-//                contentDescription = "",
-//                modifier = Modifier
-//                    .size(100.dp)
-//                    .clip(RoundedCornerShape(8.dp)),
-//                contentScale = ContentScale.Crop
-//            )
-
             Spacer(modifier = Modifier.width(16.dp))
 
             Column(
