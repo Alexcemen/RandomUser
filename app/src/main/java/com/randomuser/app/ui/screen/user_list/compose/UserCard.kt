@@ -49,14 +49,14 @@ fun UserCard(
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .shadow(
+                elevation = 10.dp,
+                shape = RoundedCornerShape(16.dp),
+                clip = false
+            )
             .background(
                 color = AppTheme.colors.background.secondary,
                 shape = RoundedCornerShape(16.dp)
-            )
-            .shadow(
-                elevation = 3.dp,
-                shape = RoundedCornerShape(16.dp),
-                clip = false
             )
     ) {
         Row(

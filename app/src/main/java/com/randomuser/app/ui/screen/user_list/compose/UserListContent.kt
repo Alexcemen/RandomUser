@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,6 +30,7 @@ import com.randomuser.app.ui.screen.user_list.UserListStore
 import com.randomuser.app.utils.composable_elements.BottomSpacerSystem
 import com.randomuser.app.utils.composable_elements.ContainerContent
 import com.randomuser.app.utils.composable_elements.SpacerHeight
+import com.randomuser.app.utils.composable_elements.TopBarSpacer
 import com.randomuser.domain.model.UserId
 import ru.project.tutor.common_ui.composable.theme.AppTheme
 
@@ -74,6 +76,7 @@ fun UserListContent(
     onEvent: (UserListStore.Event) -> Unit,
 ) {
     ContainerContent() {
+        TopBarSpacer()
         Column() {
             LazyColumn(modifier = Modifier.weight(1f)) {
                 items(state.users) {

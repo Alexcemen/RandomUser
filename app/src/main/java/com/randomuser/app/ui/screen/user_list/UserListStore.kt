@@ -28,6 +28,7 @@ object UserListStore {
     }
 
     sealed interface Effect : MviEffect {
+        data class UpdateUsers(val users: List<User>) : Effect
 
     }
 }

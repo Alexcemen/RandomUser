@@ -36,7 +36,7 @@ object DarkBackground : AppThemeColors.Background {
     override val mask: Color
         get() = Color(0xFF8F8F8F)
     override val secondary: Color
-        get() = Color(0xFFE3E3E3)
+        get() = Color(0xFF454545)
     override val primaryUniform: Color
         get() = Color(0xFF1C1C1C)
 

@@ -50,7 +50,7 @@ fun SelectorField(
                 .fillMaxWidth()
                 .border(
                     width = 1.dp,
-                    color = AppTheme.colors.background.primaryUniform,
+                    color = AppTheme.colors.background.mask,
                     shape = RoundedCornerShape(4.dp)
                 )
                 .background(
@@ -67,14 +67,14 @@ fun SelectorField(
                 Text(
                     text = value,
                     style = AppTheme.textStyle.titleThree,
-                    color = AppTheme.colors.text.primaryUniform,
+                    color = AppTheme.colors.text.mask,
                     modifier = Modifier.weight(1f)
                 )
 
                 Image(
                     painter = painterResource(R.drawable.id_polygon),
                     contentDescription = "",
-                    colorFilter = ColorFilter.tint(color = AppTheme.colors.background.primaryUniform),
+                    colorFilter = ColorFilter.tint(color = AppTheme.colors.background.mask),
                     modifier = Modifier
                         .graphicsLayer {
                             rotationZ = if (expanded) 180f else 0f
@@ -106,7 +106,7 @@ private fun DropdownList(
             .fillMaxWidth()
             .border(
                 width = 1.dp,
-                color = AppTheme.colors.background.primaryUniform,
+                color = AppTheme.colors.background.mask,
                 shape = RoundedCornerShape(
                     bottomStart = 8.dp,
                     bottomEnd = 8.dp
@@ -128,7 +128,7 @@ private fun DropdownList(
                 Text(
                     text = option,
                     style = AppTheme.textStyle.defaultLight,
-                    color = AppTheme.colors.text.primaryUniform,
+                    color = AppTheme.colors.text.mask,
                     modifier = Modifier
                         .fillMaxWidth()
                         .clickable { onSelect(option) }
@@ -140,7 +140,7 @@ private fun DropdownList(
                         modifier = Modifier
                             .padding(start = 16.dp, end = 16.dp)
                             .height(1.dp),
-                        color = AppTheme.colors.background.primaryUniform
+                        color = AppTheme.colors.background.mask
                     )
                 }
             }

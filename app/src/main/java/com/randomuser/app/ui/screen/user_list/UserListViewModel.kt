@@ -1,23 +1,39 @@
 package com.randomuser.app.ui.screen.user_list
 
+import androidx.lifecycle.viewModelScope
 import com.randomuser.app.ui.mvi.ScreenViewModel
+import com.randomuser.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-    reduce: UserListReduce
+    reduce: UserListReduce,
+    private val userRepository: UserRepository,
 ) : ScreenViewModel<UserListStore.State, UserListStore.Event, UserListStore.SideEffect, UserListStore.Effect, UserListStore.UiState>(
     reduce
 ) {
+
+    init {
+        viewModelScope.launch {
+            userRepository.getAllUsers().collect { allUsers ->
+                forceEffect(
+                    UserListStore.Effect.UpdateUsers(allUsers)
+                )
+            }
+        }
+    }
+
+
     override fun createState(): UserListStore.State = UserListStore.State()
 
     override fun handleEvent(
         currentState: UserListStore.State,
         intent: UserListStore.Event,
-    ): Flow<UserListStore.Effect> = when(intent) {
+    ): Flow<UserListStore.Effect> = when (intent) {
 
         is UserListStore.Event.ShowBottomSheet -> flow {
 
@@ -32,6 +48,13 @@ class UserListViewModel @Inject constructor(
         currentState: UserListStore.State,
         effect: UserListStore.Effect,
     ): UserListStore.State {
-        return currentState
+        return when (effect) {
+
+            is UserListStore.Effect.UpdateUsers -> {
+                currentState.copy(
+                    users = effect.users
+                )
+            }
+        }
     }
 }
