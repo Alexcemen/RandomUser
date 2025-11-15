@@ -27,5 +27,6 @@ enum class Nationality(
     RS("Serbia",          R.drawable.flag_rs),
     TR("Turkey",          R.drawable.flag_tr),
     UA("Ukraine",         R.drawable.flag_ua),
-    US("United States",   R.drawable.flag_us)
+    US("United States",   R.drawable.flag_us),
+    NONE("NONE", 1)
 }

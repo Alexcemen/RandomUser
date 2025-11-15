@@ -22,6 +22,7 @@ import com.randomuser.app.ui.models.UserUi
 import com.randomuser.app.ui.models.enums.Nationality
 import com.randomuser.app.ui.screen.user_list.UserListStore
 import com.randomuser.app.R
+import com.randomuser.domain.model.UserId
 
 
 @Preview
@@ -29,7 +30,7 @@ import com.randomuser.app.R
 private fun UserCardPreview() {
     UserCard(
         userUi = UserUi(
-            userId = 1,
+            userId = UserId("", ""),
             firstName = "Troy",
             lastName = "Ramirez",
             phone = "(464) 445-5537",

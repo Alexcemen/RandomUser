@@ -25,6 +25,7 @@ import com.randomuser.app.ui.screen.user_list.UserListStore
 import com.randomuser.app.utils.composable_elements.BottomSpacerSystem
 import com.randomuser.app.utils.composable_elements.ContainerContent
 import com.randomuser.app.utils.composable_elements.SpacerHeight
+import com.randomuser.domain.model.UserId
 import ru.project.tutor.common_ui.composable.theme.AppTheme
 
 @Preview
@@ -34,7 +35,7 @@ private fun UserListContentPreview() {
         state = UserListStore.UiState(
             listOf(
                 UserUi(
-                    userId = 1,
+                    userId = UserId("", ""),
                     firstName = "Gabrielle",
                     lastName = "Gautheir",
                     phone = "Y26 B17-2963",
@@ -42,7 +43,7 @@ private fun UserListContentPreview() {
                     mediumPicture = ""
                 ),
                 UserUi(
-                    userId = 2,
+                    userId = UserId("", ""),
                     firstName = "Troy",
                     lastName = "Ramirez",
                     phone = "(464) 445-5537",
@@ -50,7 +51,7 @@ private fun UserListContentPreview() {
                     mediumPicture = ""
                 ),
                 UserUi(
-                    userId = 3,
+                    userId = UserId("", ""),
                     firstName = "Ritthy",
                     lastName = "Lopez",
                     phone = "(294) 785-6098",
@@ -81,6 +82,7 @@ fun UserListContent(
                     )
                 }
             }
+            SpacerHeight(16.dp)
             AddUserBottom(
                 onClick = {
                     onEvent(

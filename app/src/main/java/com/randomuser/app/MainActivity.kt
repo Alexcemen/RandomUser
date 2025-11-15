@@ -18,6 +18,7 @@ import com.randomuser.app.ui.navigation.SplashScreen
 import com.randomuser.app.ui.navigation.UserDetails
 import com.randomuser.app.ui.navigation.UserList
 import com.randomuser.app.ui.screen.create_user.CreateUserScreenContent
+import com.randomuser.app.ui.screen.user_list.UserListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import ru.project.tutor.common_ui.composable.theme.AppTheme
 
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             AppTheme {
-                val backStack = rememberNavBackStack(CreateUser()) as NavBackStack<AppNavKey>
+                val backStack = rememberNavBackStack(UserList()) as NavBackStack<AppNavKey>
 
                 NavDisplay(
                     backStack = backStack,
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
 
                         entry<UserList> {
                             CompositionLocalProvider(RootNavigation provides backStack) {
-//                                UserListScreen()
+                                UserListScreen()
                             }
                         }
 
