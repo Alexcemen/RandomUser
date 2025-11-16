@@ -13,6 +13,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import java.time.Instant
+import java.time.ZoneId
+
 
 @HiltViewModel
 class UserInfoViewModel @Inject constructor(
@@ -60,7 +63,7 @@ class UserInfoViewModel @Inject constructor(
                         lastName = effect.user.name.last,
                         gender = effect.user.gender,
                         age = effect.user.dob.age,
-                        dateOfBirth = effect.user.dob.date,
+                        dateOfBirth = formatDate(effect.user.dob.date),
                         phone = effect.user.phone,
                         email = effect.user.email,
                         location = LocationUi(
@@ -82,5 +85,16 @@ class UserInfoViewModel @Inject constructor(
                     selectedUserInfoTab = effect.userInfoTab
                 )
         }
+    }
+}
+
+private fun formatDate(date: String): String {
+    return try {
+        Instant.parse(date)
+            .atZone(ZoneId.systemDefault())
+            .toLocalDate()
+            .toString()
+    } catch (e: Exception) {
+        date
     }
 }

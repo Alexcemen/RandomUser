@@ -1,6 +1,11 @@
 package com.randomuser.app.ui.screen.user_info.compose
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.randomuser.app.ui.models.LocationUi
@@ -8,9 +13,10 @@ import com.randomuser.app.ui.models.StreetUi
 import com.randomuser.app.ui.models.UserInfoUi
 import com.randomuser.app.ui.models.enums.UserInfoTab
 import com.randomuser.app.ui.screen.user_info.UserInfoStore
-import com.randomuser.app.utils.composable_elements.ContainerContent
+import com.randomuser.app.utils.composable_elements.BottomSpacerSystem
 import com.randomuser.app.utils.composable_elements.SpacerHeight
 import com.randomuser.app.utils.composable_elements.TopBarSpacer
+import ru.project.tutor.common_ui.composable.theme.AppTheme
 
 @Preview
 @Composable
@@ -48,8 +54,10 @@ fun UserInfoContent(
     state: UserInfoStore.UiState,
     onEvent: (UserInfoStore.Event) -> Unit,
 ) {
-    ContainerContent(
-        applyHorizontalPadding = false
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(AppTheme.colors.background.basic)
     ) {
         TopBarSpacer()
         HeaderSection(
@@ -66,10 +74,15 @@ fun UserInfoContent(
             lastName = state.user.lastName
         )
         SpacerHeight(24.dp)
-        UserInfoTabsSection(
+        UserInfoSection(
             user = state.user,
             selectedUserInfoTab = state.selectedTab,
+            modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 16.dp),
             onEvent = onEvent
         )
+        SpacerHeight(16.dp)
+        BottomSpacerSystem()
     }
 }
