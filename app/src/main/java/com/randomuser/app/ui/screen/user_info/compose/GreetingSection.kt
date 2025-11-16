@@ -32,7 +32,6 @@ fun GreetingSection(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 90.dp)
     ) {
 
         Text(

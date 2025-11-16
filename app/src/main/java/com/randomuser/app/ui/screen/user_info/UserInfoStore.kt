@@ -1,5 +1,7 @@
 package com.randomuser.app.ui.screen.user_info
 
+import com.randomuser.app.ui.models.LocationUi
+import com.randomuser.app.ui.models.StreetUi
 import com.randomuser.app.ui.models.UserInfoUi
 import com.randomuser.app.ui.models.enums.UserInfoTab
 import com.randomuser.app.ui.mvi.MviEffect
@@ -22,53 +24,25 @@ import com.randomuser.domain.model.UserId
 object UserInfoStore {
 
     data class State(
-        val user: User = User(
-            localId = 0,
+        val user: UserInfoUi = UserInfoUi(
+            firstName = "",
+            lastName = "",
             gender = "",
-            name = Name(
-                title = "",
-                first = "",
-                last = ""
-            ),
-            location = Location(
-                street = Street(number = 0, name = ""),
-                city = "",
-                state = "",
-                country = "",
-                postcode = "",
-                coordinates = Coordinates(latitude = "", longitude = ""),
-                timezone = Timezone(offset = "", description = "")
-            ),
-            email = "",
-            login = Login(
-                uuid = "",
-                username = "",
-                password = "",
-                salt = "",
-                md5 = "",
-                sha1 = "",
-                sha256 = ""
-            ),
-            dob = Dob(
-                date = "",
-                age = 0
-            ),
-            registered = Registered(
-                date = "",
-                age = 0
-            ),
+            age = 0,
+            dateOfBirth = "",
             phone = "",
-            cell = "",
-            userId = UserId(
-                name = "",
-                value = ""
+            email = "",
+            location = LocationUi(
+                country = "",
+                state = "",
+                city = "",
+                street = StreetUi(
+                    number = 0,
+                    name = ""
+                ),
+                postcode = ""
             ),
-            picture = Picture(
-                large = "",
-                medium = "",
-                thumbnail = ""
-            ),
-            nat = ""
+            picture = ""
         ),
         val selectedUserInfoTab: UserInfoTab = UserInfoTab.INFO
     ) : MviState

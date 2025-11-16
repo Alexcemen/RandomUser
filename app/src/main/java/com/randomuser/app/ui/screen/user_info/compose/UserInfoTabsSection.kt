@@ -19,6 +19,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.randomuser.app.ui.models.LocationUi
+import com.randomuser.app.ui.models.StreetUi
+import com.randomuser.app.ui.models.UserInfoUi
 import com.randomuser.app.ui.models.enums.UserInfoTab
 import com.randomuser.app.ui.screen.user_info.UserInfoStore
 import ru.project.tutor.common_ui.composable.theme.AppTheme
@@ -26,13 +29,37 @@ import ru.project.tutor.common_ui.composable.theme.AppTheme
 @Preview
 @Composable
 private fun UserInfoTabsSectionPreview() {
-    Us
+    UserInfoTabsSection(
+        user = UserInfoUi(
+            firstName = "Liam",
+            lastName = "Hughes",
+            gender = "male",
+            age = 31,
+            dateOfBirth = "1993-07-12",
+            phone = "(219) 292-4832",
+            email = "liam.hughes@example.com",
+            location = LocationUi(
+                country = "Canada",
+                state = "Ontario",
+                city = "Sudbury",
+                street = StreetUi(
+                    name = "Station Road",
+                    number = 8421
+                ),
+                postcode = "postcode"
+            ),
+            picture = ""
+        ),
+        selectedUserInfoTab = UserInfoTab.INFO,
+        {}
+    )
 }
 
 @Composable
 fun UserInfoTabsSection(
-    state: UserInfoStore.UiState,
-    onEvent: (UserInfoStore.Event) -> Unit
+    user: UserInfoUi,
+    selectedUserInfoTab: UserInfoTab,
+    onEvent: (UserInfoStore.Event) -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -54,27 +81,43 @@ fun UserInfoTabsSection(
         ) {
             TabItem(
                 title = "Info",
-                isSelected = selectedTab == UserInfoTab.INFO,
+                isSelected = selectedUserInfoTab == UserInfoTab.INFO,
                 modifier = Modifier.weight(1f),
-                onClick = { onTabClick(UserInfoTab.INFO) }
+                onClick = {
+                    onEvent(
+                        UserInfoStore.Event.OnTabClick(UserInfoTab.INFO)
+                    )
+                }
             )
             TabItem(
                 title = "Phone",
-                isSelected = selectedTab == UserInfoTab.PHONE,
+                isSelected = selectedUserInfoTab == UserInfoTab.PHONE,
                 modifier = Modifier.weight(1f),
-                onClick = { onTabClick(UserInfoTab.PHONE) }
+                onClick = {
+                    onEvent(
+                        UserInfoStore.Event.OnTabClick(UserInfoTab.PHONE)
+                    )
+                }
             )
             TabItem(
                 title = "Email",
-                isSelected = selectedTab == UserInfoTab.EMAIL,
+                isSelected = selectedUserInfoTab == UserInfoTab.EMAIL,
                 modifier = Modifier.weight(1f),
-                onClick = { onTabClick(UserInfoTab.EMAIL) }
+                onClick = {
+                    onEvent(
+                        UserInfoStore.Event.OnTabClick(UserInfoTab.EMAIL)
+                    )
+                }
             )
             TabItem(
                 title = "Location",
-                isSelected = selectedTab == UserInfoTab.LOCATION,
+                isSelected = selectedUserInfoTab == UserInfoTab.LOCATION,
                 modifier = Modifier.weight(1f),
-                onClick = { onTabClick(UserInfoTab.LOCATION) }
+                onClick = {
+                    onEvent(
+                        UserInfoStore.Event.OnTabClick(UserInfoTab.LOCATION)
+                    )
+                }
             )
         }
     }
@@ -85,7 +128,7 @@ private fun TabItem(
     title: String,
     isSelected: Boolean,
     modifier: Modifier = Modifier,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Box(
         modifier = modifier

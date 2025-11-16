@@ -10,4 +10,5 @@ data class UserInfoUi(
     val phone: String,
     val email: String,
     val location: LocationUi,
+    val picture: String
 )

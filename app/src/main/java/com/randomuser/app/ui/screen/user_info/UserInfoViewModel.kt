@@ -1,6 +1,9 @@
 package com.randomuser.app.ui.screen.user_info
 
 import androidx.lifecycle.viewModelScope
+import com.randomuser.app.ui.models.LocationUi
+import com.randomuser.app.ui.models.StreetUi
+import com.randomuser.app.ui.models.UserInfoUi
 import com.randomuser.app.ui.mvi.ScreenViewModel
 import com.randomuser.app.utils.KeeperKeys
 import com.randomuser.app.utils.StateKeeper
@@ -15,7 +18,7 @@ import javax.inject.Inject
 class UserInfoViewModel @Inject constructor(
     reduce: UserInfoReduce,
     private val keeper: StateKeeper,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
 ) : ScreenViewModel<UserInfoStore.State, UserInfoStore.Event, UserInfoStore.SideEffect, UserInfoStore.Effect, UserInfoStore.UiState>(
     reduce
 ) {
@@ -33,7 +36,7 @@ class UserInfoViewModel @Inject constructor(
     override fun handleEvent(
         currentState: UserInfoStore.State,
         intent: UserInfoStore.Event,
-    ): Flow<UserInfoStore.Effect> = when(intent) {
+    ): Flow<UserInfoStore.Effect> = when (intent) {
 
         is UserInfoStore.Event.Close -> flow {
             sendSideEffect(UserInfoStore.SideEffect.Close)
@@ -48,11 +51,30 @@ class UserInfoViewModel @Inject constructor(
         currentState: UserInfoStore.State,
         effect: UserInfoStore.Effect,
     ): UserInfoStore.State {
-        return when(effect) {
+        return when (effect) {
 
             is UserInfoStore.Effect.LoadUser ->
                 currentState.copy(
-                    user = effect.user
+                    user = UserInfoUi(
+                        firstName = effect.user.name.first,
+                        lastName = effect.user.name.last,
+                        gender = effect.user.gender,
+                        age = effect.user.dob.age,
+                        dateOfBirth = effect.user.dob.date,
+                        phone = effect.user.phone,
+                        email = effect.user.email,
+                        location = LocationUi(
+                            street = StreetUi(
+                                name = effect.user.location.street.name,
+                                number = effect.user.location.street.number
+                            ),
+                            city = effect.user.location.city,
+                            state = effect.user.location.state,
+                            country = effect.user.location.country,
+                            postcode = effect.user.location.postcode
+                        ),
+                        picture = effect.user.picture.medium
+                    )
                 )
 
             is UserInfoStore.Effect.OnTabClick ->
