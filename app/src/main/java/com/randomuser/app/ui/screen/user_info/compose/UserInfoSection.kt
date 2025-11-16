@@ -62,7 +62,7 @@ fun UserInfoSection(
             .clip(RoundedCornerShape(24.dp))
             .background(AppTheme.colors.background.secondary)
     ) {
-        Column() {
+        Column {
             UserInfoTabs(
                 selectedUserInfoTab = selectedUserInfoTab,
                 onEvent = onEvent

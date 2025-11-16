@@ -20,6 +20,7 @@ import com.randomuser.app.ui.models.LocationUi
 import com.randomuser.app.ui.models.StreetUi
 import com.randomuser.app.ui.models.UserInfoUi
 import com.randomuser.app.ui.models.enums.UserInfoTab
+import com.randomuser.app.utils.composable_elements.SpacerWidth
 import ru.project.tutor.common_ui.composable.theme.AppTheme
 
 @Preview
@@ -149,6 +150,7 @@ fun InfoRow(label: String, value: String) {
             style = AppTheme.textStyle.titleThree1,
             color = AppTheme.colors.text.primary
         )
+        SpacerWidth(4.dp)
         Text(
             text = value,
             style = AppTheme.textStyle.defaultNorm,
