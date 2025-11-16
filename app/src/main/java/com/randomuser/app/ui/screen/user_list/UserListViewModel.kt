@@ -20,10 +20,12 @@ class UserListViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            userRepository.getAllUsers().collect { allUsers ->
-                forceEffect(
-                    UserListStore.Effect.UpdateUsers(allUsers)
-                )
+            withIO {
+                userRepository.getAllUsers().collect { allUsers ->
+                    forceEffect(
+                        UserListStore.Effect.UpdateUsers(allUsers)
+                    )
+                }
             }
         }
     }
