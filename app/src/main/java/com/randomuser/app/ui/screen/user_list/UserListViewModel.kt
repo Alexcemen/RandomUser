@@ -71,7 +71,8 @@ class UserListViewModel @Inject constructor(
         }
 
         is UserListStore.Event.OpenUserCard -> flow {
-
+//            TODO("Добавить в keeper")
+            sendSideEffect(UserListStore.SideEffect.OpenUserInfo)
         }
     }
 

@@ -24,6 +24,7 @@ object UserListStore {
 
     sealed interface SideEffect : MviSideEffect {
         data object OpenCreateUserContent : SideEffect
+        data object OpenUserInfo : SideEffect
     }
 
     sealed interface Event : MviEvent {

@@ -12,7 +12,7 @@ import com.randomuser.app.utils.showError
 
 
 @Composable
-fun CreateUserScreenContent() {
+fun CreateUserScreen() {
     val rootNavigator = RootNavigation.current
     val viewModel = hiltViewModel<CreateUserViewModel>()
     val context = LocalContext.current

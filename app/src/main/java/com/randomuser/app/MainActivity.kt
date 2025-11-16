@@ -15,9 +15,11 @@ import androidx.navigation3.ui.NavDisplay
 import com.randomuser.app.ui.mvi.AppNavKey
 import com.randomuser.app.ui.navigation.CreateUser
 import com.randomuser.app.ui.navigation.SplashScreen
-import com.randomuser.app.ui.navigation.UserDetails
+import com.randomuser.app.ui.navigation.UserInfo
 import com.randomuser.app.ui.navigation.UserList
-import com.randomuser.app.ui.screen.create_user.CreateUserScreenContent
+import com.randomuser.app.ui.screen.create_user.CreateUserScreen
+import com.randomuser.app.ui.screen.user_info.UserInfoScreen
+import com.randomuser.app.ui.screen.user_info.compose.UserInfoContent
 import com.randomuser.app.ui.screen.user_list.UserListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import ru.project.tutor.common_ui.composable.theme.AppTheme
@@ -51,7 +53,7 @@ class MainActivity : ComponentActivity() {
 
                         entry<CreateUser> {
                             CompositionLocalProvider(RootNavigation provides backStack) {
-                                CreateUserScreenContent()
+                                CreateUserScreen()
                             }
                         }
 
@@ -61,9 +63,9 @@ class MainActivity : ComponentActivity() {
                             }
                         }
 
-                        entry<UserDetails> {
+                        entry<UserInfo> {
                             CompositionLocalProvider(RootNavigation provides backStack) {
-//                                UserDetailsScreen()
+                                UserInfoScreen()
                             }
                         }
                     }

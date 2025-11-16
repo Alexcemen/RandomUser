@@ -6,6 +6,7 @@ import com.randomuser.app.ui.models.UserUi
 import com.randomuser.app.ui.models.enums.Nationality
 import com.randomuser.app.ui.screen.user_info.UserInfoStore
 import com.randomuser.app.utils.composable_elements.ContainerContent
+import com.randomuser.app.utils.composable_elements.TopBarSpacer
 
 @Preview
 @Composable
@@ -30,7 +31,17 @@ fun UserInfoContent(
     state: UserInfoStore.UiState,
     onEvent: (UserInfoStore.Event) -> Unit
 ) {
-    ContainerContent {
-
+    ContainerContent(
+        applyHorizontalPadding = false
+    ) {
+        TopBarSpacer()
+        HeaderSection(
+            photoUrl = state.user.mediumPicture,
+            onBackClick = {
+                onEvent(
+                    UserInfoStore.Event.Close
+                )
+            }
+        )
     }
 }

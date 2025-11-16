@@ -7,6 +7,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.randomuser.app.RootNavigation
 import com.randomuser.app.ui.mvi.sideEffect
 import com.randomuser.app.ui.navigation.CreateUser
+import com.randomuser.app.ui.navigation.UserInfo
 import com.randomuser.app.ui.screen.user_list.compose.UserListContent
 
 @Composable
@@ -21,6 +22,9 @@ fun UserListScreen() {
                 rootNavigator?.add(CreateUser())
             }
 
+            is UserListStore.SideEffect.OpenUserInfo -> {
+                rootNavigator?.add(UserInfo())
+            }
         }
     }
 

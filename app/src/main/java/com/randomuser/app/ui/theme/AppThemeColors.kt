@@ -23,6 +23,7 @@ interface AppThemeColors {
         val primary: Color
         val secondary: Color
         val primaryUniform: Color
+        val primaryTwo: Color
 
 
 

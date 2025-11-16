@@ -16,5 +16,5 @@ data class UserList(override val type: String = UserList::class.simpleName.toStr
     AppNavKey()
 
 @Serializable
-data class UserDetails(override val type: String = UserDetails::class.simpleName.toString()) :
+data class UserInfo(override val type: String = UserInfo::class.simpleName.toString()) :
     AppNavKey()
