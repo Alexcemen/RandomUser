@@ -7,7 +7,6 @@ import com.randomuser.app.ui.mvi.MviSideEffect
 import com.randomuser.app.ui.mvi.MviState
 import com.randomuser.app.ui.mvi.MviUiState
 import com.randomuser.domain.model.User
-import com.randomuser.domain.model.UserId
 
 object UserListStore {
     data class State(

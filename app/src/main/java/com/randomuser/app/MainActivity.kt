@@ -15,12 +15,10 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.randomuser.app.ui.mvi.AppNavKey
 import com.randomuser.app.ui.navigation.CreateUser
-import com.randomuser.app.ui.navigation.SplashScreen
 import com.randomuser.app.ui.navigation.UserInfo
 import com.randomuser.app.ui.navigation.UserList
 import com.randomuser.app.ui.screen.create_user.CreateUserScreen
 import com.randomuser.app.ui.screen.user_info.UserInfoScreen
-import com.randomuser.app.ui.screen.user_info.compose.UserInfoContent
 import com.randomuser.app.ui.screen.user_list.UserListScreen
 import com.randomuser.app.utils.StateKeeper
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,12 +61,6 @@ class MainActivity : ComponentActivity() {
                         rememberViewModelStoreNavEntryDecorator()
                     ),
                     entryProvider = entryProvider {
-                        entry<SplashScreen> {
-                            CompositionLocalProvider(RootNavigation provides backStack) {
-//                                SplashScreenContent()
-                            }
-                        }
-
                         entry<CreateUser> {
                             CompositionLocalProvider(RootNavigation provides backStack) {
                                 CreateUserScreen()

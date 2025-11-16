@@ -9,17 +9,7 @@ import com.randomuser.app.ui.mvi.MviEvent
 import com.randomuser.app.ui.mvi.MviSideEffect
 import com.randomuser.app.ui.mvi.MviState
 import com.randomuser.app.ui.mvi.MviUiState
-import com.randomuser.domain.model.Coordinates
-import com.randomuser.domain.model.Dob
-import com.randomuser.domain.model.Location
-import com.randomuser.domain.model.Login
-import com.randomuser.domain.model.Name
-import com.randomuser.domain.model.Picture
-import com.randomuser.domain.model.Registered
-import com.randomuser.domain.model.Street
-import com.randomuser.domain.model.Timezone
 import com.randomuser.domain.model.User
-import com.randomuser.domain.model.UserId
 
 object UserInfoStore {
 

@@ -13,18 +13,9 @@ object DarkText : AppThemeColors.Text {
         get() = Color(0xFF1C1C1C)
     override val placeholder: Color
         get() = Color(0xFFA6A6A6)
-
-    override val red: Color
-        get() = Color(0xFFE67474)
-    override val blue: Color
-        get() = Color(0xFF588BD4)
-
     override val reverse: Color
         get() = Color(0xFF000000)
-    override val blueTwo: Color
-        get() = Color(0xFF4987C5)
-    override val whiteUniform: Color
-        get() = Color(0xFFFFFFFF)
+
 }
 
 @Immutable
@@ -41,21 +32,9 @@ object DarkBackground : AppThemeColors.Background {
         get() = Color(0xFF1C1C1C)
     override val primaryTwo: Color
         get() = Color(0xFF707070)
-
-
-    override val blue: Color
-        get() = Color(0xFF2B4976)
-    override val red: Color
-        get() = Color(0xFF762B2B)
-    override val green: Color
-        get() = Color(0xFF19582D)
     override val secondaryTwo: Color
         get() = Color(0xFF3F3F3F)
-    override val basicUniform: Color
-        get() = Color(0xFFFFFFFF)
 
-    override val yellow: Color
-        get() = Color(0xFFA68E0F)
 }
 
 object DarkColor : AppThemeColors {

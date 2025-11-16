@@ -48,7 +48,7 @@ fun PrimaryButton(
             text,
             color = AppTheme.colors.text.reverse,
             letterSpacing = 0.sp,
-            style = AppTheme.textStyle.bodyOne,
+            style = AppTheme.textStyle.titleTwo,
         )
     }
 }
