@@ -1,6 +1,7 @@
 package com.randomuser.app
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -21,13 +22,30 @@ import com.randomuser.app.ui.screen.create_user.CreateUserScreen
 import com.randomuser.app.ui.screen.user_info.UserInfoScreen
 import com.randomuser.app.ui.screen.user_info.compose.UserInfoContent
 import com.randomuser.app.ui.screen.user_list.UserListScreen
+import com.randomuser.app.utils.StateKeeper
 import dagger.hilt.android.AndroidEntryPoint
 import ru.project.tutor.common_ui.composable.theme.AppTheme
+import javax.inject.Inject
 
 val RootNavigation = compositionLocalOf<NavBackStack<AppNavKey>?> { null }
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var stateKeeper: StateKeeper
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        Log.e("TAG2", "update = ${savedInstanceState}")
+        stateKeeper.update(savedInstanceState)
+        super.onRestoreInstanceState(savedInstanceState)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        Log.e("TAG2", "onSaveInstanceState-2")
+        outState.putAll(stateKeeper.getAll())
+        super.onSaveInstanceState(outState)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

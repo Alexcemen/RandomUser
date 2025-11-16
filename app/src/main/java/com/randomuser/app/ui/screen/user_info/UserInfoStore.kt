@@ -7,6 +7,7 @@ import com.randomuser.app.ui.mvi.MviEvent
 import com.randomuser.app.ui.mvi.MviSideEffect
 import com.randomuser.app.ui.mvi.MviState
 import com.randomuser.app.ui.mvi.MviUiState
+import com.randomuser.domain.model.User
 
 object UserInfoStore {
 
@@ -34,6 +35,6 @@ object UserInfoStore {
     }
 
     sealed interface Effect : MviEffect {
-        data class LoadUser(val userId: Int) : Effect
+        data class LoadUser(val user: User) : Effect
     }
 }

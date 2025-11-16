@@ -2,6 +2,8 @@ package com.randomuser.app.ui.screen.user_list
 
 import androidx.lifecycle.viewModelScope
 import com.randomuser.app.ui.mvi.ScreenViewModel
+import com.randomuser.app.utils.KeeperKeys
+import com.randomuser.app.utils.StateKeeper
 import com.randomuser.app.utils.withIO
 import com.randomuser.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,6 +16,7 @@ import javax.inject.Inject
 class UserListViewModel @Inject constructor(
     reduce: UserListReduce,
     private val userRepository: UserRepository,
+    private val keeper: StateKeeper
 ) : ScreenViewModel<UserListStore.State, UserListStore.Event, UserListStore.SideEffect, UserListStore.Effect, UserListStore.UiState>(
     reduce
 ) {
@@ -71,7 +74,15 @@ class UserListViewModel @Inject constructor(
         }
 
         is UserListStore.Event.OpenUserCard -> flow {
-//            TODO("Добавить в keeper")
+            keeper.set(
+                KeeperKeys.USER_ID_BUNDLE,
+                intent.userId
+            )
+            emit(
+                UserListStore.Effect.VisibleBottomSheet(
+                    userId = -1
+                )
+            )
             sendSideEffect(UserListStore.SideEffect.OpenUserInfo)
         }
     }
