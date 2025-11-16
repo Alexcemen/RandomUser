@@ -8,7 +8,8 @@ class CreateUserReduce @Inject constructor() :
     override fun reduce(state: CreateUserStore.State): CreateUserStore.UiState {
         return CreateUserStore.UiState(
             gender = state.gender,
-            nationality = state.nationality
+            nationality = state.nationality,
+            isLoading = state.isLoading
         )
     }
 }

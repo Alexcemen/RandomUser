@@ -11,12 +11,14 @@ import com.randomuser.app.ui.models.enums.Nationality
 object CreateUserStore {
     data class State(
         val gender: Gender = Gender.MALE,
-        val nationality: Nationality = Nationality.UA
+        val nationality: Nationality = Nationality.UA,
+        val isLoading: Boolean = false
     ) : MviState
 
     data class UiState(
         val gender: Gender,
-        val nationality: Nationality
+        val nationality: Nationality,
+        val isLoading: Boolean
     ) : MviUiState
 
     sealed interface SideEffect : MviSideEffect {
@@ -34,5 +36,7 @@ object CreateUserStore {
     sealed interface Effect : MviEffect {
         data class SelectedGender(val gender: Gender) : Effect
         data class SelectedNationality(val nationality: Nationality) : Effect
+        object LoadingStarted : Effect
+        object LoadingFinished : Effect
     }
 }

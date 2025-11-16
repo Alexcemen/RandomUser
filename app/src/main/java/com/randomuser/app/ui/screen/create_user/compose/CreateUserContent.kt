@@ -2,6 +2,7 @@ package com.randomuser.app.ui.screen.create_user.compose
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -31,7 +32,8 @@ private fun CreateUserContentPreviewLight() {
         CreateUserContent(
             state = CreateUserStore.UiState(
                 gender = Gender.MALE,
-                nationality = Nationality.UA
+                nationality = Nationality.UA,
+                isLoading = false
             ),
             onEvent = {}
         )
@@ -49,7 +51,8 @@ private fun CreateUserContentPreviewDark() {
         CreateUserContent(
             state = CreateUserStore.UiState(
                 gender = Gender.MALE,
-                nationality = Nationality.UA
+                nationality = Nationality.UA,
+                isLoading = false
             ),
             onEvent = {}
         )
@@ -111,11 +114,19 @@ fun CreateUserContent(
             )
         }
         SpacerHeight(16.dp)
-        PrimaryButton(text = stringResource(R.string.generate)) {
-            onEvent(
-                CreateUserStore.Event.Generate
+        PrimaryButton(
+            text = stringResource(R.string.generate),
+            isEnabled = !state.isLoading
+        ) {
+            onEvent(CreateUserStore.Event.Generate)
+        }
+        if (state.isLoading) {
+            SpacerHeight(12.dp)
+            CircularProgressIndicator(
+                color = AppTheme.colors.background.primary
             )
         }
+
         BottomSpacerSystem()
         SpacerHeight(16.dp)
     }

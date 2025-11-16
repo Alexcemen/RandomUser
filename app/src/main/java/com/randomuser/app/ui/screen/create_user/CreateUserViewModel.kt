@@ -1,6 +1,5 @@
 package com.randomuser.app.ui.screen.create_user
 
-import android.util.Log
 import com.randomuser.app.ui.mvi.ScreenViewModel
 import com.randomuser.app.utils.withIO
 import com.randomuser.domain.repository.UserRepository
@@ -29,6 +28,8 @@ class CreateUserViewModel @Inject constructor(
         }
 
         is CreateUserStore.Event.Generate -> flow {
+            emit(CreateUserStore.Effect.LoadingStarted)
+
             withIO {
                 val result = userRepository.fetchRandomUser(
                     gender = currentState.gender.name,
@@ -36,6 +37,7 @@ class CreateUserViewModel @Inject constructor(
                 )
                 result.onSuccess { user ->
                     userRepository.insertUser(user)
+                    emit(CreateUserStore.Effect.LoadingFinished)
                     sendSideEffect(CreateUserStore.SideEffect.Close)
                     sendSideEffect(
                         CreateUserStore.SideEffect.ShowToast(
@@ -44,6 +46,7 @@ class CreateUserViewModel @Inject constructor(
                     )
                 }
                 result.onFailure { error ->
+                    emit(CreateUserStore.Effect.LoadingFinished)
                     sendSideEffect(
                         CreateUserStore.SideEffect.ShowToast(
                             msg = "Не удалось добавить нового пользователя"
@@ -71,6 +74,10 @@ class CreateUserViewModel @Inject constructor(
             is CreateUserStore.Effect.SelectedGender -> currentState.copy(gender = effect.gender)
 
             is CreateUserStore.Effect.SelectedNationality -> currentState.copy(nationality = effect.nationality)
+
+            is CreateUserStore.Effect.LoadingStarted -> currentState.copy(isLoading = true)
+
+            is CreateUserStore.Effect.LoadingFinished -> currentState.copy(isLoading = false)
 
         }
     }
