@@ -8,6 +8,7 @@ import com.randomuser.app.ui.mvi.ScreenViewModel
 import com.randomuser.app.utils.KeeperKeys
 import com.randomuser.app.utils.StateKeeper
 import com.randomuser.domain.repository.UserRepository
+import com.randomuser.domain.usecase.GetUserByIdUserCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,13 +23,17 @@ class UserInfoViewModel @Inject constructor(
     reduce: UserInfoReduce,
     private val keeper: StateKeeper,
     private val userRepository: UserRepository,
+    private val getUserByIdUseCase: GetUserByIdUserCase
 ) : ScreenViewModel<UserInfoStore.State, UserInfoStore.Event, UserInfoStore.SideEffect, UserInfoStore.Effect, UserInfoStore.UiState>(
     reduce
 ) {
     init {
         viewModelScope.launch {
             val userId = keeper.getInt(KeeperKeys.USER_ID_BUNDLE) ?: return@launch
-            val user = userRepository.getUserById(userId) ?: return@launch
+            //TODO
+//            val user = userRepository.getUserById(userId) ?: return@launch
+            val user = getUserByIdUseCase(userId) ?: return@launch
+
             forceEffect(UserInfoStore.Effect.LoadUser(user))
         }
     }

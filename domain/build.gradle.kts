@@ -8,4 +8,5 @@ kotlin {
 
 dependencies {
     implementation(libs.coroutine)
+    implementation(libs.javax.inject)
 }

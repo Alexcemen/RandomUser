@@ -1,4 +1,4 @@
-package com.randomuser.app.utils
+package com.randomuser.domain.utils
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

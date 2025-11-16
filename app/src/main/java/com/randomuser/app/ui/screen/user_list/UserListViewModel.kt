@@ -4,8 +4,9 @@ import androidx.lifecycle.viewModelScope
 import com.randomuser.app.ui.mvi.ScreenViewModel
 import com.randomuser.app.utils.KeeperKeys
 import com.randomuser.app.utils.StateKeeper
-import com.randomuser.app.utils.withIO
 import com.randomuser.domain.repository.UserRepository
+import com.randomuser.domain.usecase.DeleteUserUserCase
+import com.randomuser.domain.usecase.GetSavedUsersUserCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,19 +17,29 @@ import javax.inject.Inject
 class UserListViewModel @Inject constructor(
     reduce: UserListReduce,
     private val userRepository: UserRepository,
-    private val keeper: StateKeeper
+    private val keeper: StateKeeper,
+    private val getSavedUsersUserCase: GetSavedUsersUserCase,
+    private val deleteUserUserCase: DeleteUserUserCase
 ) : ScreenViewModel<UserListStore.State, UserListStore.Event, UserListStore.SideEffect, UserListStore.Effect, UserListStore.UiState>(
     reduce
 ) {
 
     init {
         viewModelScope.launch {
-            withIO {
-                userRepository.getAllUsers().collect { allUsers ->
-                    forceEffect(
-                        UserListStore.Effect.UpdateUsers(allUsers)
-                    )
-                }
+
+            //TODO
+//            withIO {
+//                userRepository.getAllUsers().collect { allUsers ->
+//                    forceEffect(
+//                        UserListStore.Effect.UpdateUsers(allUsers)
+//                    )
+//                }
+//            }
+
+            getSavedUsersUserCase().collect { allUsers ->
+                forceEffect(
+                    UserListStore.Effect.UpdateUsers(allUsers)
+                )
             }
         }
     }
@@ -63,9 +74,12 @@ class UserListViewModel @Inject constructor(
         }
 
         is UserListStore.Event.DeleteUser -> flow {
-            withIO {
-                userRepository.deleteUser(intent.userId)
-            }
+            //TODO
+//            withIO {
+//                userRepository.deleteUser(intent.userId)
+//            }
+            deleteUserUserCase(intent.userId)
+
             emit(
                 UserListStore.Effect.VisibleBottomSheet(
                     userId = -1
