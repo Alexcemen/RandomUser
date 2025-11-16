@@ -30,29 +30,31 @@ class CreateUserViewModel @Inject constructor(
         is CreateUserStore.Event.Generate -> flow {
             emit(CreateUserStore.Effect.LoadingStarted)
 
-            withIO {
-                val result = userRepository.fetchRandomUser(
+            val result = withIO {
+                userRepository.fetchRandomUser(
                     gender = currentState.gender.name,
                     nat = currentState.nationality.name
                 )
-                result.onSuccess { user ->
+            }
+            result.onSuccess { user ->
+                withIO {
                     userRepository.insertUser(user)
-                    emit(CreateUserStore.Effect.LoadingFinished)
-                    sendSideEffect(CreateUserStore.SideEffect.Close)
-                    sendSideEffect(
-                        CreateUserStore.SideEffect.ShowToast(
-                            msg = "Новый пользователь ${user.name.title} ${user.name.first} ${user.name.last} успешно добавлен в список"
-                        )
-                    )
                 }
-                result.onFailure { error ->
-                    emit(CreateUserStore.Effect.LoadingFinished)
-                    sendSideEffect(
-                        CreateUserStore.SideEffect.ShowToast(
-                            msg = "Не удалось добавить нового пользователя"
-                        )
+                emit(CreateUserStore.Effect.LoadingFinished)
+                sendSideEffect(CreateUserStore.SideEffect.Close)
+                sendSideEffect(
+                    CreateUserStore.SideEffect.ShowToast(
+                        msg = "Новый пользователь ${user.name.title} ${user.name.first} ${user.name.last} успешно добавлен в список"
                     )
-                }
+                )
+            }
+            result.onFailure { error ->
+                emit(CreateUserStore.Effect.LoadingFinished)
+                sendSideEffect(
+                    CreateUserStore.SideEffect.ShowToast(
+                        msg = "Не удалось добавить нового пользователя"
+                    )
+                )
             }
         }
 
