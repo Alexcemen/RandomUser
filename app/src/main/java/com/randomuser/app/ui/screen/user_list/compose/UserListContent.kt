@@ -4,10 +4,7 @@ import UserCard
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -18,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,11 +23,9 @@ import com.randomuser.app.R
 import com.randomuser.app.ui.models.UserUi
 import com.randomuser.app.ui.models.enums.Nationality
 import com.randomuser.app.ui.screen.user_list.UserListStore
-import com.randomuser.app.utils.composable_elements.BottomSpacerSystem
 import com.randomuser.app.utils.composable_elements.ContainerContent
 import com.randomuser.app.utils.composable_elements.SpacerHeight
 import com.randomuser.app.utils.composable_elements.TopBarSpacer
-import com.randomuser.domain.model.UserId
 import ru.project.tutor.common_ui.composable.theme.AppTheme
 
 @Preview
@@ -75,9 +69,11 @@ fun UserListContent(
     state: UserListStore.UiState,
     onEvent: (UserListStore.Event) -> Unit,
 ) {
-    ContainerContent() {
-        TopBarSpacer()
-        Column() {
+    Box(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        ContainerContent() {
+            TopBarSpacer()
             LazyColumn(modifier = Modifier.weight(1f)) {
                 items(state.users) {
                     SpacerHeight(8.dp)
@@ -87,24 +83,17 @@ fun UserListContent(
                     )
                 }
             }
-            SpacerHeight(16.dp)
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = 16.dp, bottom = 16.dp),
-                horizontalArrangement = Arrangement.End
-            ) {
-                AddUserBottom(
-                    onClick = {
-                        onEvent(
-                            UserListStore.Event.AddUser
-                        )
-                    }
-                )
-            }
-            BottomSpacerSystem()
-            SpacerHeight(16.dp)
         }
+        AddUserBottom(
+            onClick = {
+                onEvent(
+                    UserListStore.Event.AddUser
+                )
+            },
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp)
+        )
     }
 }
 
