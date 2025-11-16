@@ -11,24 +11,31 @@ import com.randomuser.domain.model.UserId
 
 object UserListStore {
     data class State(
-        val users: List<User> = emptyList()
-    ) : MviState
+        val users: List<User> = emptyList(),
+        val bottomSheetId: Int = -1,
+        val isVisibleBottomSheet: Boolean = false,
+        ) : MviState
 
     data class UiState(
-        val users: List<UserUi>
-    ) : MviUiState
+        val users: List<UserUi>,
+        val bottomSheetId: Int,
+        val isVisibleBottomSheet: Boolean,
+        ) : MviUiState
 
     sealed interface SideEffect : MviSideEffect {
         data object OpenCreateUserContent : SideEffect
     }
 
     sealed interface Event : MviEvent {
-        data class ShowBottomSheet(val userId: Int) : Event
         data object AddUser : Event
+        data class ShowBottomSheet(val userId: Int) : Event
+        data object CloseBottomSheet : Event
+        data class OpenUserCard(val userId: Int) : Event
+        data class DeleteUser(val userId: Int) : Event
     }
 
     sealed interface Effect : MviEffect {
         data class UpdateUsers(val users: List<User>) : Effect
-
+        data class VisibleBottomSheet(val userId: Int) : Effect
     }
 }

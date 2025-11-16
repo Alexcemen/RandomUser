@@ -18,7 +18,9 @@ class UserListReduce @Inject constructor() :
                     nationality = Nationality.valueOf(user.nat),
                     mediumPicture = user.picture.medium
                 )
-            }
+            },
+            bottomSheetId = state.bottomSheetId,
+            isVisibleBottomSheet = state.isVisibleBottomSheet
         )
     }
 }

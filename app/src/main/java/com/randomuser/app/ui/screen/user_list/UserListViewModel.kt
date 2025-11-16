@@ -35,12 +35,33 @@ class UserListViewModel @Inject constructor(
         intent: UserListStore.Event,
     ): Flow<UserListStore.Effect> = when (intent) {
 
+        is UserListStore.Event.AddUser -> flow {
+            sendSideEffect(UserListStore.SideEffect.OpenCreateUserContent)
+        }
+
         is UserListStore.Event.ShowBottomSheet -> flow {
+            emit(
+                UserListStore.Effect.VisibleBottomSheet(
+                    userId = intent.userId
+                )
+            )
+        }
+
+        is UserListStore.Event.CloseBottomSheet -> flow {
+            if (currentState.bottomSheetId == -1) return@flow
+            emit(
+                UserListStore.Effect.VisibleBottomSheet(
+                    userId = -1
+                )
+            )
+        }
+
+        is UserListStore.Event.DeleteUser -> flow {
 
         }
 
-        is UserListStore.Event.AddUser -> flow {
-            sendSideEffect(UserListStore.SideEffect.OpenCreateUserContent)
+        is UserListStore.Event.OpenUserCard -> flow {
+
         }
     }
 
@@ -55,6 +76,12 @@ class UserListViewModel @Inject constructor(
                     users = effect.users
                 )
             }
+
+            is UserListStore.Effect.VisibleBottomSheet ->
+                currentState.copy(
+                    isVisibleBottomSheet = effect.userId != -1,
+                    bottomSheetId = effect.userId
+                )
         }
     }
 }

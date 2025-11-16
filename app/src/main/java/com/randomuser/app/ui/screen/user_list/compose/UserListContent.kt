@@ -1,6 +1,7 @@
 package com.randomuser.app.ui.screen.user_list.compose
 
 import UserCard
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,6 +12,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -58,12 +61,16 @@ private fun UserListContentPreview() {
                     nationality = Nationality.US,
                     mediumPicture = ""
                 )
-            )
+            ),
+            bottomSheetId = 0,
+            isVisibleBottomSheet = false
         ),
         {}
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("ResourceType")
 @Composable
 fun UserListContent(
     state: UserListStore.UiState,
@@ -73,6 +80,16 @@ fun UserListContent(
         modifier = Modifier.fillMaxWidth()
     ) {
         ContainerContent() {
+            if (state.isVisibleBottomSheet) {
+                BottomSheet(
+                    bottomSheetId = state.bottomSheetId,
+                    isVisibleBottomSheet = true,
+                    state = rememberModalBottomSheetState(),
+                    onEvent = {
+                        onEvent(it)
+                    }
+                )
+            }
             TopBarSpacer()
             LazyColumn(modifier = Modifier.weight(1f)) {
                 items(state.users) {
@@ -92,7 +109,7 @@ fun UserListContent(
             },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
-                .padding(16.dp)
+                .padding(24.dp)
         )
     }
 }
