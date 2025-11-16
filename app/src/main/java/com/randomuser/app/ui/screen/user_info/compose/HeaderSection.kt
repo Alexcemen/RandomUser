@@ -61,7 +61,6 @@ fun HeaderSection(
                 .size(32.dp)
                 .align(Alignment.TopStart)
                 .clickable { onBackClick() }
-
         )
 
         AsyncImage(
