@@ -2,6 +2,7 @@ package com.randomuser.app.ui.screen.user_list
 
 import androidx.lifecycle.viewModelScope
 import com.randomuser.app.ui.mvi.ScreenViewModel
+import com.randomuser.app.utils.withIO
 import com.randomuser.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -57,7 +58,14 @@ class UserListViewModel @Inject constructor(
         }
 
         is UserListStore.Event.DeleteUser -> flow {
-
+            withIO {
+                userRepository.deleteUser(intent.userId)
+            }
+            emit(
+                UserListStore.Effect.VisibleBottomSheet(
+                    userId = -1
+                )
+            )
         }
 
         is UserListStore.Event.OpenUserCard -> flow {

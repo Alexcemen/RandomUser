@@ -25,8 +25,8 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getUserById(id: Int): User? {
-        return dao.getUserById(id)?.let { entityToDomain.map(it) }
+    override suspend fun getUserById(userid: Int): User? {
+        return dao.getUserById(userid)?.let { entityToDomain.map(it) }
     }
 
     override suspend fun insertUser(user: User) {
@@ -37,8 +37,8 @@ class UserRepositoryImpl @Inject constructor(
         dao.insertUsers(users.map { domainToEntity.map(it) })
     }
 
-    override suspend fun clearUsers() {
-        dao.clear()
+    override suspend fun deleteUser(userId: Int) {
+        dao.deleteUser(userId)
     }
 
     override suspend fun fetchRandomUser(gender: String, nat: String): Result<User> {
