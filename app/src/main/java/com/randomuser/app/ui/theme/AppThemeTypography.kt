@@ -44,6 +44,13 @@ class AppThemeTypography {
         lineHeight = 26.sp
     )
 
+    val defaultNorm: TextStyle = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp,
+        lineHeight = 26.sp
+    )
+
     val subheadThree: TextStyle = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,

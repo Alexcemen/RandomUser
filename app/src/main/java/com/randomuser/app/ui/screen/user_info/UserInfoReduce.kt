@@ -7,7 +7,8 @@ class UserInfoReduce @Inject constructor() :
     Reducer<UserInfoStore.State, UserInfoStore.UiState> {
     override fun reduce(state: UserInfoStore.State): UserInfoStore.UiState {
         return UserInfoStore.UiState(
-            user = state.user
+            user = state.user,
+            selectedTab = state.selectedUserInfoTab
         )
     }
 }

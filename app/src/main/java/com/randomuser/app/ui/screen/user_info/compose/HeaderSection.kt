@@ -2,7 +2,6 @@ package com.randomuser.app.ui.screen.user_info.compose
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,7 +36,7 @@ private fun HeaderSectionPreview() {
 @Composable
 fun HeaderSection(
     photoUrl: String,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -54,31 +52,25 @@ fun HeaderSection(
             )
     ) {
 
-        Box(
+        Image(
+            painter = painterResource(id = R.drawable.ic_arrow_circle),
+            contentDescription = "back",
+            colorFilter = ColorFilter.tint(AppTheme.colors.background.basic),
             modifier = Modifier
                 .padding(start = 16.dp, top = 16.dp)
                 .size(32.dp)
-                .clip(CircleShape)
-                .background(AppTheme.colors.background.basic)
+                .align(Alignment.TopStart)
                 .clickable { onBackClick() }
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_arrow),
-                contentDescription = "back",
-                colorFilter = ColorFilter.tint(AppTheme.colors.background.primary),
-                modifier = Modifier
-                    .size(16.dp)
-                    .align(Alignment.Center)
-            )
-        }
+
+        )
 
         AsyncImage(
             model = photoUrl,
             contentDescription = "User Image",
             modifier = Modifier
-                .size(135.dp)
+                .size(150.dp)
                 .align(Alignment.BottomCenter)
-                .offset(y = 65.dp)
+                .offset(y = 75.dp)
                 .clip(CircleShape),
             contentScale = ContentScale.Crop
         )

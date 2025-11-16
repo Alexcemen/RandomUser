@@ -1,8 +1,6 @@
 package com.randomuser.app.ui.screen.user_info
 
 import androidx.lifecycle.viewModelScope
-import com.randomuser.app.ui.models.UserUi
-import com.randomuser.app.ui.models.enums.Nationality
 import com.randomuser.app.ui.mvi.ScreenViewModel
 import com.randomuser.app.utils.KeeperKeys
 import com.randomuser.app.utils.StateKeeper
@@ -40,6 +38,10 @@ class UserInfoViewModel @Inject constructor(
         is UserInfoStore.Event.Close -> flow {
             sendSideEffect(UserInfoStore.SideEffect.Close)
         }
+
+        is UserInfoStore.Event.OnTabClick -> flow {
+            forceEffect(UserInfoStore.Effect.OnTabClick(intent.tab))
+        }
     }
 
     override fun handleEffect(
@@ -50,14 +52,12 @@ class UserInfoViewModel @Inject constructor(
 
             is UserInfoStore.Effect.LoadUser ->
                 currentState.copy(
-                    UserUi(
-                        userId = effect.user.localId,
-                        firstName = effect.user.name.first,
-                        lastName = effect.user.name.last,
-                        phone = effect.user.phone,
-                        nationality = Nationality.valueOf(effect.user.nat),
-                        mediumPicture = effect.user.picture.medium
-                    )
+                    user = effect.user
+                )
+
+            is UserInfoStore.Effect.OnTabClick ->
+                currentState.copy(
+                    selectedUserInfoTab = effect.userInfoTab
                 )
         }
     }
