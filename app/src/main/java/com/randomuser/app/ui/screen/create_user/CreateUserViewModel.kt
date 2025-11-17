@@ -1,7 +1,6 @@
 package com.randomuser.app.ui.screen.create_user
 
 import com.randomuser.app.ui.mvi.ScreenViewModel
-import com.randomuser.domain.repository.UserRepository
 import com.randomuser.domain.usecase.GetRandomUserCase
 import com.randomuser.domain.usecase.SaveUserUserCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +11,6 @@ import javax.inject.Inject
 @HiltViewModel
 class CreateUserViewModel @Inject constructor(
     reduce: CreateUserReduce,
-    private val userRepository: UserRepository,
     private val getRandomUserUseCase: GetRandomUserCase,
     private val saveUserUseCase: SaveUserUserCase
 ) : ScreenViewModel<CreateUserStore.State, CreateUserStore.Event, CreateUserStore.SideEffect, CreateUserStore.Effect, CreateUserStore.UiState>(
@@ -33,27 +31,13 @@ class CreateUserViewModel @Inject constructor(
         is CreateUserStore.Event.Generate -> flow {
             emit(CreateUserStore.Effect.LoadingStarted)
 
-            //TODO
-//            val result = withIO {
-//                userRepository.fetchRandomUser(
-//                    gender = currentState.gender.name,
-//                    nat = currentState.nationality.name
-//                )
-//            }
-
             val result = getRandomUserUseCase(
                 gender = currentState.gender.name,
                 nat = currentState.nationality.name
             )
 
-            //TODO
             result.onSuccess { user ->
-//                withIO {
-//                    userRepository.insertUser(user)
-//                }
                 saveUserUseCase(user)
-
-
                 emit(CreateUserStore.Effect.LoadingFinished)
                 sendSideEffect(CreateUserStore.SideEffect.Close)
                 sendSideEffect(

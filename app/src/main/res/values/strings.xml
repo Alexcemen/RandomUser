@@ -20,6 +20,7 @@
     <string name="state">State : </string>
     <string name="city">City : </string>
     <string name="street">Street : </string>
+    <string name="hello_message">Hi how are you today? \n Im : </string>
 
 </resources>
 

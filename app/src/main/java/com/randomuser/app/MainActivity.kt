@@ -1,7 +1,6 @@
 package com.randomuser.app
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -34,13 +33,11 @@ class MainActivity : ComponentActivity() {
     lateinit var stateKeeper: StateKeeper
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        Log.e("TAG2", "update = ${savedInstanceState}")
         stateKeeper.update(savedInstanceState)
         super.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        Log.e("TAG2", "onSaveInstanceState-2")
         outState.putAll(stateKeeper.getAll())
         super.onSaveInstanceState(outState)
     }
