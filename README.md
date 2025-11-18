@@ -91,3 +91,9 @@ GET api/?gender={gender}&nat={nationality}
 При отсутствии интернета:
 	•	Можно открыть список
 	•	Можно открыть карточку пользователя
+
+Обзор проекта:
+YouTube:
+https://youtu.be/ox0JxDeNTXw
+
+
